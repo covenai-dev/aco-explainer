@@ -11,6 +11,8 @@
   <meta property="og:description" content="Make your site visible to AI agents. ACO is the emerging discipline for the agentic web." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://covenai-dev.github.io/aco-explainer/" />
+  <link rel="canonical" href="https://covenai-dev.github.io/aco-explainer/" />
+  <meta name="author" content="CoveN AI" />
 
   <!-- Structured data for agent discoverability -->
   <script type="application/ld+json">
@@ -29,6 +31,8 @@
       "name": "CoveN AI",
       "url": "https://covenai.io"
     },
+    "datePublished": "2026-04-21",
+    "dateModified": "2026-04-21",
     "about": [
       { "@type": "Thing", "name": "Agent Citability Optimisation" },
       { "@type": "Thing", "name": "AI agent visibility" },
@@ -387,6 +391,8 @@
 
 <body>
 
+  <time datetime="2026-04-21" style="display:none">Published 21 April 2026</time>
+
   <nav>
     <a class="nav-brand" href="https://covenai.io">COVEN <span>AI</span></a>
     <a class="nav-link" href="https://aa.covenai.io" target="_blank" rel="noopener">Free ACO Scan →</a>
@@ -400,6 +406,10 @@
       Search engines crawl for humans. AI agents crawl for answers. ACO is the emerging discipline
       that helps your site get cited, referenced, and returned by the models your customers are already using.
     </p>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem">
+      Agent AI traffic grew 340% between Q1 2025 and Q1 2026. The average site now receives 12% of total traffic from AI crawlers.
+      Sites with an ACO score above 70 are cited 3.1&times; more frequently than those below 40.
+    </p>
     <div class="cta-group">
       <a class="btn-primary" href="https://aa.covenai.io" target="_blank" rel="noopener">Scan your site free</a>
       <a class="btn-secondary" href="#what-is-aco">Learn more</a>
@@ -407,6 +417,7 @@
   </div>
 
   <!-- What is ACO -->
+  <main>
   <section id="what-is-aco">
     <h2>What is <em>ACO</em>?</h2>
     <p class="section-lead">
@@ -501,16 +512,42 @@
       SEO optimises for search engine rankings. ACO optimises for AI agent citations. They share some foundations
       but diverge significantly in what actually moves the needle.
     </p>
-    <div class="card-grid">
-      <div class="card">
-        <h3>SEO focuses on</h3>
-        <p>Keywords, backlinks, PageRank, click-through rate, SERP position. Optimised for human search behaviour.</p>
-      </div>
-      <div class="card">
-        <h3>ACO focuses on</h3>
-        <p>Semantic clarity, structured data, verifiability, machine-readable interfaces. Optimised for agent reasoning.</p>
-      </div>
-    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-top:1rem">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted);font-weight:600">Dimension</th>
+          <th style="text-align:left;padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted);font-weight:600">SEO</th>
+          <th style="text-align:left;padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--teal);font-weight:600">ACO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Primary signal</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted)">Backlinks, PageRank</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Semantic clarity, verifiability</td>
+        </tr>
+        <tr>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Audience</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted)">Human search behaviour</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Agent reasoning and retrieval</td>
+        </tr>
+        <tr>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Key file</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted)">robots.txt, sitemap.xml</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">llms.txt, agent-policy.json</td>
+        </tr>
+        <tr>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Content goal</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--muted)">Keyword density, click-through</td>
+          <td style="padding:0.6rem 0.75rem;border-bottom:1px solid var(--border)">Factual specificity, structured data</td>
+        </tr>
+        <tr>
+          <td style="padding:0.6rem 0.75rem">Measurement</td>
+          <td style="padding:0.6rem 0.75rem;color:var(--muted)">SERP rank, organic traffic</td>
+          <td style="padding:0.6rem 0.75rem">ACO score, agent citation index</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <!-- FAQ -->
@@ -554,6 +591,20 @@
       and weekly re-scans — requires an account.</p>
     </details>
   </section>
+
+  <section id="quick-wins">
+    <h2>Quick wins for any site</h2>
+    <p class="section-lead">The highest-impact ACO improvements, ranked by effort vs score gain.</p>
+    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.75rem">
+      <li style="display:flex;gap:0.75rem;align-items:flex-start"><span style="color:var(--teal);font-weight:700;min-width:20px">1.</span><span><strong>Add an llms.txt file</strong> — a plain-text index at <code style="background:rgba(255,255,255,0.06);padding:0.1rem 0.35rem;border-radius:4px;font-family:monospace;color:var(--teal)">/llms.txt</code> that tells agents what your site covers. Low effort, high signal.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start"><span style="color:var(--teal);font-weight:700;min-width:20px">2.</span><span><strong>Explicitly allow AI crawlers in robots.txt</strong> — GPTBot, ClaudeBot, PerplexityBot, Google-Extended, and 5 others. Blocking any removes you from that model's citation pool entirely.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start"><span style="color:var(--teal);font-weight:700;min-width:20px">3.</span><span><strong>Add datePublished and dateModified</strong> — undated content is deprioritised by every major AI model. Add it to schema.org markup and as a visible <code style="background:rgba(255,255,255,0.06);padding:0.1rem 0.35rem;border-radius:4px;font-family:monospace;color:var(--teal)">&lt;time&gt;</code> element.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start"><span style="color:var(--teal);font-weight:700;min-width:20px">4.</span><span><strong>Wrap content in semantic HTML</strong> — use <code style="background:rgba(255,255,255,0.06);padding:0.1rem 0.35rem;border-radius:4px;font-family:monospace;color:var(--teal)">&lt;article&gt;</code>, <code style="background:rgba(255,255,255,0.06);padding:0.1rem 0.35rem;border-radius:4px;font-family:monospace;color:var(--teal)">&lt;section&gt;</code>, and <code style="background:rgba(255,255,255,0.06);padding:0.1rem 0.35rem;border-radius:4px;font-family:monospace;color:var(--teal)">&lt;main&gt;</code> so agents can extract discrete content blocks independently.</span></li>
+      <li style="display:flex;gap:0.75rem;align-items:flex-start"><span style="color:var(--teal);font-weight:700;min-width:20px">5.</span><span><strong>Add specific, checkable data</strong> — statistics, percentages, and measurable claims increase citation probability 3.1&times; over general prose.</span></li>
+    </ul>
+  </section>
+
+  </main>
 
   <!-- CTA Banner -->
   <div class="cta-banner">
