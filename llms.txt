@@ -1,0 +1,23 @@
+# CoveN AI — ACO Explainer
+
+> Agent Citability Optimisation (ACO) is the practice of making websites visible, trustworthy, and structured for AI agents.
+
+This page explains what ACO is, how it is scored, and how it differs from SEO. It is maintained by CoveN AI, a platform that measures and improves AI agent citability for websites.
+
+## Key concepts
+
+- **ACO (Agent Citability Optimisation)** — optimising a site so AI agents (ChatGPT, Claude, Perplexity, Gemini) cite, reference, and return it when users ask relevant questions
+- **ACO score** — a 0–100 score across five dimensions: discoverability, structure, trust signals, agent interface, and correlation
+- **ACI (Agent Citation Index)** — CoveN AI's ranked index of which sites agents are actually citing
+- **llms.txt** — a plain-text file at /llms.txt that gives AI agents a direct, machine-readable summary of what a site contains
+
+## Free tools
+
+- Free citability scan: https://aa.covenai.io
+- Scan any URL, get a full ACO score and prioritised recommendations
+
+## About CoveN AI
+
+- Website: https://covenai.io
+- Agent Analytics platform: https://aa.covenai.io
+- Founded to build the measurement and optimisation layer for the agentic web

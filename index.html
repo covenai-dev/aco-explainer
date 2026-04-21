@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Citability Optimisation (ACO) — CoveN AI</title>
+  <meta name="description" content="Agent Citability Optimisation (ACO) is the practice of making your website visible, trustworthy, and structured for AI agents. Learn how CoveN AI measures and improves your site's agent citability score." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Agent Citability Optimisation (ACO) — CoveN AI" />
+  <meta property="og:description" content="Make your site visible to AI agents. ACO is the emerging discipline for the agentic web." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://covenai-dev.github.io/aco-explainer/" />
+
+  <!-- Structured data for agent discoverability -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Agent Citability Optimisation (ACO)",
+    "description": "ACO is the practice of making your website visible, trustworthy, and structured for AI agents — the emerging discipline for the agentic web.",
+    "author": {
+      "@type": "Organization",
+      "name": "CoveN AI",
+      "url": "https://covenai.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CoveN AI",
+      "url": "https://covenai.io"
+    },
+    "about": [
+      { "@type": "Thing", "name": "Agent Citability Optimisation" },
+      { "@type": "Thing", "name": "AI agent visibility" },
+      { "@type": "Thing", "name": "Agentic web" }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #1ab8c4;
+      --teal-dark: #138a94;
+      --bg: #0a0e14;
+      --surface: #111720;
+      --border: #1e2a38;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --card-bg: #131c28;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 14, 20, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-brand span { color: var(--teal); }
+
+    .nav-link {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(26, 184, 196, 0.1);
+      border: 1px solid rgba(26, 184, 196, 0.25);
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.75rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--teal);
+      color: #000;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── Sections ── */
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    h2 em { font-style: normal; color: var(--teal); }
+
+    .section-lead {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── Cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(26, 184, 196, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── Score explainer ── */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .score-row:last-child { border-bottom: none; }
+
+    .score-label {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+
+    .score-label strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .score-label span {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .score-bar-wrap {
+      width: 140px;
+      height: 6px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-bar {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 999px;
+    }
+
+    .score-pct {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal);
+      width: 36px;
+      text-align: right;
+    }
+
+    /* ── FAQ ── */
+    details {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+
+    details:first-of-type { border-top: 1px solid var(--border); }
+
+    summary {
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      font-size: 1.1rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin: 3rem auto;
+      max-width: 800px;
+    }
+
+    .cta-banner h2 { margin-bottom: 0.5rem; }
+    .cta-banner p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+
+    /* ── llms.txt hint ── */
+    .well-known-note {
+      background: rgba(26,184,196,0.05);
+      border: 1px solid rgba(26,184,196,0.15);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+
+    .well-known-note code {
+      background: rgba(255,255,255,0.06);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.75rem;
+      color: var(--teal);
+    }
+  </style>
+
+  <!-- CoveN AI Agent Analytics tag -->
+  <script async src="https://aa.covenai.io/tag.js" data-site="18d14fd7-4108-4795-9b06-d9b6f0355ffe"></script>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-brand" href="https://covenai.io">COVEN <span>AI</span></a>
+    <a class="nav-link" href="https://aa.covenai.io" target="_blank" rel="noopener">Free ACO Scan →</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">Agent Citability Optimisation</div>
+    <h1>Is your site visible to <em>AI agents</em>?</h1>
+    <p class="hero-sub">
+      Search engines crawl for humans. AI agents crawl for answers. ACO is the emerging discipline
+      that helps your site get cited, referenced, and returned by the models your customers are already using.
+    </p>
+    <div class="cta-group">
+      <a class="btn-primary" href="https://aa.covenai.io" target="_blank" rel="noopener">Scan your site free</a>
+      <a class="btn-secondary" href="#what-is-aco">Learn more</a>
+    </div>
+  </div>
+
+  <!-- What is ACO -->
+  <section id="what-is-aco">
+    <h2>What is <em>ACO</em>?</h2>
+    <p class="section-lead">
+      Agent Citability Optimisation is the practice of making your website structured, trustworthy, and
+      accessible enough that AI agents — ChatGPT, Claude, Perplexity, Gemini — will cite it, link to it,
+      and return it as a result when users ask relevant questions.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Discoverability</h3>
+        <p>Can agents find and fetch your content? Correct robots.txt, sitemaps, and crawlability signals matter.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <h3>Structure</h3>
+        <p>Semantic HTML, schema.org markup, and clear information hierarchy help agents parse and understand your content.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <h3>Trust signals</h3>
+        <p>Author attribution, publication dates, citations, and verifiable facts increase the probability of being cited.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Agent interface</h3>
+        <p>llms.txt, well-formed APIs, and machine-readable summaries give agents a direct interface to your site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it's scored -->
+  <section id="scoring">
+    <h2>How the <em>ACO score</em> works</h2>
+    <p class="section-lead">
+      CoveN AI's scanner analyses five dimensions and produces a 0–100 citability score with
+      prioritised, copy-paste recommendations.
+    </p>
+
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Discoverability</strong>
+        <span>robots.txt, sitemap, crawl signals</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
+      <div class="score-pct">90%</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Structure</strong>
+        <span>Schema.org, semantic HTML, headings</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:72%"></div></div>
+      <div class="score-pct">72%</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Trust signals</strong>
+        <span>Author info, dates, citations, HTTPS</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:65%"></div></div>
+      <div class="score-pct">65%</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Agent interface</strong>
+        <span>llms.txt, API, machine-readable content</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:45%"></div></div>
+      <div class="score-pct">45%</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Correlation</strong>
+        <span>Agent visit patterns vs citation outcomes</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:58%"></div></div>
+      <div class="score-pct">58%</div>
+    </div>
+
+    <div class="well-known-note">
+      <strong>llms.txt</strong> — a plain-text file at <code>/llms.txt</code> that tells AI agents what your site is about, 
+      who it's for, and what they should cite. Think of it as <code>robots.txt</code> for the agentic web. 
+      CoveN AI generates one automatically from your scan.
+    </div>
+  </section>
+
+  <!-- ACO vs SEO -->
+  <section id="aco-vs-seo">
+    <h2>ACO vs <em>SEO</em></h2>
+    <p class="section-lead">
+      SEO optimises for search engine rankings. ACO optimises for AI agent citations. They share some foundations
+      but diverge significantly in what actually moves the needle.
+    </p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>SEO focuses on</h3>
+        <p>Keywords, backlinks, PageRank, click-through rate, SERP position. Optimised for human search behaviour.</p>
+      </div>
+      <div class="card">
+        <h3>ACO focuses on</h3>
+        <p>Semantic clarity, structured data, verifiability, machine-readable interfaces. Optimised for agent reasoning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>Common questions</h2>
+    <p class="section-lead">What site owners ask when they first encounter ACO.</p>
+
+    <details>
+      <summary>Do I need to change my content to improve my ACO score?</summary>
+      <p>Usually not dramatically. Most ACO improvements are structural — adding schema markup, 
+      fixing your robots.txt, adding an llms.txt file, and ensuring your pages have clear author 
+      and date metadata. Content quality matters too, but the technical layer is where most sites 
+      have quick wins.</p>
+    </details>
+
+    <details>
+      <summary>Does this replace SEO?</summary>
+      <p>No — ACO and SEO are complementary. A well-structured, trustworthy site ranks well in 
+      both traditional search and agent citation. But the optimisation signals diverge: keyword 
+      density matters less to an AI agent than factual accuracy and clear information hierarchy.</p>
+    </details>
+
+    <details>
+      <summary>How do AI agents decide what to cite?</summary>
+      <p>Each model has its own approach, but the common factors are: clear authorship, factual 
+      specificity, recency signals, domain trust, and structural clarity. Sites that make it easy 
+      for agents to extract precise, verifiable information get cited more frequently.</p>
+    </details>
+
+    <details>
+      <summary>What is the Agent Citation Index (ACI)?</summary>
+      <p>The ACI is CoveN AI's ranked index of which sites AI agents are actually citing across 
+      categories. It's the output signal — ACO is the inputs (what you optimise), ACI is the outcome 
+      (whether it worked). The index launches once scan volume makes it statistically meaningful.</p>
+    </details>
+
+    <details>
+      <summary>Is the free scan really free?</summary>
+      <p>Yes. Run a full citability scan on any URL at no cost. You get a score across all five 
+      dimensions plus prioritised fix recommendations. Monitoring — ongoing agent visit tracking 
+      and weekly re-scans — requires an account.</p>
+    </details>
+  </section>
+
+  <!-- CTA Banner -->
+  <div class="cta-banner">
+    <h2>See your <em>ACO score</em> in 30 seconds</h2>
+    <p>Free scan. No account required. Prioritised recommendations included.</p>
+    <a class="btn-primary" href="https://aa.covenai.io" target="_blank" rel="noopener">Scan your site free →</a>
+  </div>
+
+  <footer>
+    <p>
+      Built by <a href="https://covenai.io" target="_blank" rel="noopener">CoveN AI</a> &nbsp;·&nbsp;
+      <a href="https://aa.covenai.io" target="_blank" rel="noopener">Agent Analytics</a> &nbsp;·&nbsp;
+      <a href="https://covenai.io/privacy" target="_blank" rel="noopener">Privacy</a>
+    </p>
+  </footer>
+
+</body>
+</html>
