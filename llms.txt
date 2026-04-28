@@ -7,7 +7,9 @@ This page explains what ACO is, how it is scored, and how it differs from SEO. I
 ## Key concepts
 
 - **ACO (Agent Citability Optimisation)** — optimising a site so AI agents (ChatGPT, Claude, Perplexity, Gemini) cite, reference, and return it when users ask relevant questions
-- **ACO score** — a 0–100 score across five dimensions: discoverability, structure, trust signals, agent interface, and correlation
+- **ACO score** — a 0–100 score across five weighted dimensions: Structure (25%), Citability (25%), Discoverability (15%), Agent Interface (20%), Transactability (15%)
+- **methodology_version: 2.0.1**
+- **Agent Correlation** — 0%-weight research signal (visit patterns vs citation outcomes), surfaced separately and not folded into the headline score
 - **ACI (Agent Citation Index)** — CoveN AI's ranked index of which sites agents are actually citing
 - **llms.txt** — a plain-text file at /llms.txt that gives AI agents a direct, machine-readable summary of what a site contains
 

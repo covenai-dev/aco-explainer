@@ -438,13 +438,18 @@
       </div>
       <div class="card">
         <div class="card-icon">✅</div>
-        <h3>Trust signals</h3>
+        <h3>Citability</h3>
         <p>Author attribution, publication dates, citations, and verifiable facts increase the probability of being cited.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚡</div>
-        <h3>Agent interface</h3>
+        <h3>Agent Interface</h3>
         <p>llms.txt, well-formed APIs, and machine-readable summaries give agents a direct interface to your site.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">↔</div>
+        <h3>Transactability</h3>
+        <p>Machine-readable pricing, structured product data, and agent-ready checkout primitives so an agent can complete a purchase without a human in the loop.</p>
       </div>
     </div>
   </section>
@@ -453,50 +458,55 @@
   <section id="scoring">
     <h2>How the <em>ACO score</em> works</h2>
     <p class="section-lead">
-      CoveN AI's scanner analyses five dimensions and produces a 0–100 citability score with
-      prioritised, copy-paste recommendations.
+      CoveN AI's scanner analyses five weighted dimensions and produces a 0–100 citability score with
+      prioritised, copy-paste recommendations. Methodology v2.0.1.
     </p>
 
-    <div class="score-row">
-      <div class="score-label">
-        <strong>Discoverability</strong>
-        <span>robots.txt, sitemap, crawl signals</span>
-      </div>
-      <div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div>
-      <div class="score-pct">90%</div>
-    </div>
     <div class="score-row">
       <div class="score-label">
         <strong>Structure</strong>
         <span>Schema.org, semantic HTML, headings</span>
       </div>
-      <div class="score-bar-wrap"><div class="score-bar" style="width:72%"></div></div>
-      <div class="score-pct">72%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:25%"></div></div>
+      <div class="score-pct">25%</div>
     </div>
     <div class="score-row">
       <div class="score-label">
-        <strong>Trust signals</strong>
-        <span>Author info, dates, citations, HTTPS</span>
+        <strong>Citability</strong>
+        <span>Author info, dates, citations, verifiable facts</span>
       </div>
-      <div class="score-bar-wrap"><div class="score-bar" style="width:65%"></div></div>
-      <div class="score-pct">65%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:25%"></div></div>
+      <div class="score-pct">25%</div>
     </div>
     <div class="score-row">
       <div class="score-label">
-        <strong>Agent interface</strong>
+        <strong>Discoverability</strong>
+        <span>robots.txt, sitemap, crawl signals</span>
+      </div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:15%"></div></div>
+      <div class="score-pct">15%</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">
+        <strong>Agent Interface</strong>
         <span>llms.txt, API, machine-readable content</span>
       </div>
-      <div class="score-bar-wrap"><div class="score-bar" style="width:45%"></div></div>
-      <div class="score-pct">45%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:20%"></div></div>
+      <div class="score-pct">20%</div>
     </div>
     <div class="score-row">
       <div class="score-label">
-        <strong>Correlation</strong>
-        <span>Agent visit patterns vs citation outcomes</span>
+        <strong>Transactability</strong>
+        <span>Machine-readable pricing, agent-ready checkout</span>
       </div>
-      <div class="score-bar-wrap"><div class="score-bar" style="width:58%"></div></div>
-      <div class="score-pct">58%</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:15%"></div></div>
+      <div class="score-pct">15%</div>
     </div>
+
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem">
+      Agent Correlation (visit patterns vs citation outcomes) is tracked as a 0%-weight research signal,
+      surfaced separately and not folded into the headline score.
+    </p>
 
     <div class="well-known-note">
       <strong>llms.txt</strong> — a plain-text file at <code>/llms.txt</code> that tells AI agents what your site is about, 
